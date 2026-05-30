@@ -1,0 +1,2 @@
+{"id": "req_1", "itemName": "laptop", "message": "Mi serve un laptop urgente per completare la tesi entro 48 ore, il mio si è rotto improvvisamente", "time": 2, "borrower": "Mario Rossi", "type": "request", "status": "pending"}
+{"id": "off_1", "itemName": "laptop", "message": "Posso prestarti un laptop gaming funzionante, disponibile subito fino a fine settimana", "lender": "Simona Bianchi", "type": "offer", "status": "available"}

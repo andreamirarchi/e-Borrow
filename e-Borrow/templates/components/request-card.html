@@ -1,0 +1,21 @@
+<div class="border rounded p-3 mb-2 request-card">
+
+    <div class="d-flex justify-content-between">
+        <b>{{ item }}</b>
+        <span class="badge bg-secondary">{{ status }}</span>
+    </div>
+
+    <div>{{ message }}</div>
+
+    <small class="text-muted">
+        borrower: {{ borrower }} | time: {{ time }}
+    </small>
+
+    {% if status != "taken" %}
+    <button class="btn btn-sm btn-warning mt-2"
+            onclick="takeInCharge('{{ id }}')">
+        Take in charge
+    </button>
+    {% endif %}
+
+</div>
