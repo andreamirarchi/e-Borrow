@@ -6,4 +6,4 @@ class Loan(BorrowEntity):
         super().__init__(id, itemName, message)
         self.borrower = borrower
         self.lender = lender
-        self.status = "taken"
+        self.status = "preso in carico"

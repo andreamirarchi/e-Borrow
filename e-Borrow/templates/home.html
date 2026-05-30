@@ -14,21 +14,20 @@
 
     <h1 class="mb-4 text-center">e-Borrow</h1>
 
-    <!-- FORMS -->
     <div class="row g-4 mb-4">
 
         <div class="col-md-6">
             <div class="card p-3 shadow-sm">
 
-                <h4>Create Request</h4>
+                <h4>Crea Richiesta</h4>
 
                 <form method="POST" action="/request">
-                    <input class="form-control mb-2" name="itemName" placeholder="Item name" required>
-                    <input class="form-control mb-2" name="message" placeholder="Message" required>
-                    <input class="form-control mb-2" type="number" name="time" placeholder="Time" required>
-                    <input class="form-control mb-2" name="borrower" placeholder="Borrower" required>
+                    <input class="form-control mb-2" name="itemName" placeholder="Nome oggetto" required>
+                    <input class="form-control mb-2" name="message" placeholder="Messaggio" required>
+                    <input class="form-control mb-2" type="number" name="time" placeholder="Tempo (in giorni)" required>
+                    <input class="form-control mb-2" name="borrower" placeholder="Richiedente" required>
 
-                    <button class="btn btn-primary w-100">Send Request</button>
+                    <button class="btn btn-primary w-100">Invia Richiesta</button>
                 </form>
 
             </div>
@@ -37,14 +36,14 @@
         <div class="col-md-6">
             <div class="card p-3 shadow-sm">
 
-                <h4>Create Offer</h4>
+                <h4>Crea Offerta</h4>
 
                 <form method="POST" action="/offer">
-                    <input class="form-control mb-2" name="itemName" placeholder="Item name" required>
-                    <input class="form-control mb-2" name="message" placeholder="Message" required>
-                    <input class="form-control mb-2" name="lender" placeholder="Lender" required>
+                    <input class="form-control mb-2" name="itemName" placeholder="Nome oggetto" required>
+                    <input class="form-control mb-2" name="message" placeholder="Messaggio" required>
+                    <input class="form-control mb-2" name="lender" placeholder="Offerente" required>
 
-                    <button class="btn btn-success w-100">Send Offer</button>
+                    <button class="btn btn-success w-100">Invia Offerta</button>
                 </form>
 
             </div>
@@ -52,14 +51,12 @@
 
     </div>
 
-    <!-- DATA -->
     <div class="row g-4">
 
-        <!-- REQUESTS -->
         <div class="col-md-6">
             <div class="card p-3 shadow-sm">
 
-                <h4>Requests</h4>
+                <h4>Richieste</h4>
 
                 {% for r in requests %}
                 {% with
@@ -77,11 +74,10 @@
             </div>
         </div>
 
-        <!-- OFFERS -->
         <div class="col-md-6">
             <div class="card p-3 shadow-sm">
 
-                <h4>Offers</h4>
+                <h4>Offerte</h4>
 
                 {% for o in offers %}
                 {% with
@@ -91,7 +87,7 @@
                 lender=o.lender,
                 status=o.status
                 %}
-                {% include "components/offer- card.html" %}
+                {% include "components/offer-card.html" %}
                 {% endwith %}
                 {% endfor %}
 
@@ -112,7 +108,7 @@
         const offer = offers.find(o => o.status === "available");
 
         if (!request || !offer) {
-            alert("Missing data");
+            alert("Dati mancanti");
             return;
         }
 

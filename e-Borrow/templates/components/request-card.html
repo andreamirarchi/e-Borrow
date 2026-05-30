@@ -8,13 +8,14 @@
     <div>{{ message }}</div>
 
     <small class="text-muted">
-        borrower: {{ borrower }} | time: {{ time }}
+        richiedente: {{ borrower }} | tempo: {{ 2 }} giorni
     </small>
 
     {% if status != "taken" %}
+    <br>
     <button class="btn btn-sm btn-warning mt-2"
             onclick="takeInCharge('{{ id }}')">
-        Take in charge
+        Prendi in carico
     </button>
     {% endif %}
 

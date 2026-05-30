@@ -52,10 +52,5 @@ class JsonlRepository:
                 f.write(json.dumps(item, ensure_ascii=False) + "\n")
         return item
 
-    # Backward-compatible aliases
     def addItem(self, item):
         return self.add_item(item)
-
-
-# Compatibility name for the old module filename
-JsonlAsDB = JsonlRepository

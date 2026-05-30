@@ -9,7 +9,7 @@ class BorrowRequest(BorrowEntity):
         self.importance = importance
         self.time = time
         self.borrower = borrower
-        self.status = "pending"
+        self.status = "in attesa"
 
     def priority(self):
         return request_priority(self.message, self.time)

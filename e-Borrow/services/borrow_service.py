@@ -28,7 +28,11 @@ class BorrowService:
             lender=data["lender"]
         )
 
-        self.repo.add_item(offer.__dict__)
+        obj = offer.__dict__
+        obj["type"] = "offer"
+        obj["status"] = "available"
+
+        self.repo.add_item(obj)
         return offer
 
     def get_requests(self):
