@@ -7,6 +7,7 @@ from flask import Flask, render_template, request, jsonify, redirect
 from flasgger import Swagger
 
 BASE_DIR = Path(__file__).resolve().parents[1]
+
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
@@ -14,9 +15,9 @@ from forms.borrow_forms import BorrowRequestForm, OfferForm
 from schemas.borrow_request_schema import BorrowRequestSchema
 from schemas.offer_schema import OfferSchema
 
-from repository_factory import get_repository
+from repository.repository_factory import get_repository
 from services.borrow_service import BorrowService
-from settings import DATABASE_MODE
+from config.settings import DATABASE_MODE
 
 app = Flask(__name__, template_folder=str(BASE_DIR / "templates"))
 
@@ -111,10 +112,12 @@ def api_create_offer():
 
 @app.route("/api/match", methods=["GET"])
 def match():
-    return jsonify(service.match(
-        service.get_offers(),
-        service.get_requests()
-    ))
+    return jsonify(
+        service.match(
+            service.get_offers(),
+            service.get_requests()
+        )
+    )
 
 
 @app.route("/api/loan", methods=["POST"])
@@ -134,7 +137,6 @@ if __name__ == "__main__":
     print("Directory:", BASE_DIR)
     print("Tipo repository:", type(repo).__name__)
 
-    #test crud
     print(repo.load_items())
     print(repo.get_item("req_1"))
 

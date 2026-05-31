@@ -1,8 +1,15 @@
 import mysql.connector
 from typing import Any, Dict, List, Optional
 
-from settings import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE
-from repositories.base import Repository
+from config.settings import (
+    MYSQL_HOST,
+    MYSQL_PORT,
+    MYSQL_USER,
+    MYSQL_PASSWORD,
+    MYSQL_DATABASE
+)
+
+from repository.base import Repository
 
 
 class MySqlRepository(Repository):
@@ -24,20 +31,41 @@ class MySqlRepository(Repository):
         cursor.execute("SELECT * FROM items")
         return cursor.fetchall()
 
-    def get_item(self, item_id: str) -> Optional[Dict[str, Any]]:
+    def get_item(
+        self,
+        item_id: str
+    ) -> Optional[Dict[str, Any]]:
+
         cursor = self._cursor()
-        cursor.execute("SELECT * FROM items WHERE id = %s", (item_id,))
+
+        cursor.execute(
+            "SELECT * FROM items WHERE id = %s",
+            (item_id,)
+        )
+
         return cursor.fetchone()
 
-    def add_item(self, item: Dict[str, Any]) -> Dict[str, Any]:
+    def add_item(
+        self,
+        item: Dict[str, Any]
+    ) -> Dict[str, Any]:
+
         cursor = self._cursor()
 
         keys = ", ".join(item.keys())
         values = tuple(item.values())
-        placeholders = ", ".join(["%s"] * len(item))
+        placeholders = ", ".join(
+            ["%s"] * len(item)
+        )
 
-        sql = f"INSERT INTO items ({keys}) VALUES ({placeholders})"
+        sql = (
+            f"INSERT INTO items "
+            f"({keys}) "
+            f"VALUES ({placeholders})"
+        )
+
         cursor.execute(sql, values)
 
         self.conn.commit()
+
         return item
